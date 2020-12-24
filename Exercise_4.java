@@ -1,41 +1,65 @@
 import java.util.LinkedList; 
 import java.util.Queue; 
-public class GFG { 
-       
-    /* A binary tree node has key, pointer to  
-    left child and a pointer to right child */
-    static class Node { 
-        int key; 
-        Node left, right; 
-          
-        // constructor 
-        Node(int key){ 
-            this.key = key; 
-            left = null; 
-            right = null; 
-        } 
-    } 
-    static Node root; 
-    static Node temp = root; 
-      
-    /* Inorder traversal of a binary tree*/
-    static void inorder(Node temp) 
-    { 
-        if (temp == null) 
-            return; 
-       
-        inorder(temp.left); 
-        System.out.print(temp.key+" "); 
-        inorder(temp.right); 
-    } 
-       
-    /*function to insert element in binary tree */
-    static void insert(Node temp, int key) 
-    { 
+class GFG {
 
-        // Do level order traversal until we find 
-        // an empty place and add the node.  
-    } 
+    /* A binary tree node has key, pointer to
+     left child and a pointer to right child */
+    static class Node {
+        int key;
+        Node left, right;
+
+        // constructor
+        Node(int key){
+            this.key = key;
+            left = null;
+            right = null;
+        }
+    }
+    static Node root;
+    //static Node temp = root;
+
+    /* Inorder traversal of a binary tree*/
+    static void inorder(Node temp)
+    {
+        if (temp == null)
+            return;
+
+        inorder(temp.left);
+        System.out.print(temp.key+" ");
+        inorder(temp.right);
+    }
+
+    /*function to insert element in binary tree */
+    static void insert(Node temp, int key)
+    {
+
+        // Do level order traversal until we find
+        // an empty place and add the node.
+        Node newNode = new Node(key);
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(temp);
+
+        while(!queue.isEmpty()){
+            Node tmp = queue.poll();
+            //queue.add(tmp.left);
+            //queue.add(tmp.right);
+
+            if (tmp.left == null) {
+                tmp.left = newNode;
+                System.out.println("Adding "+ key+" to left of " +tmp.key);
+                return;
+            }
+
+            if (tmp.right == null) {
+                tmp.right = newNode;
+                System.out.println("Adding "+ key+" to right of " +tmp.key);
+                return;
+            }
+
+            queue.add(tmp.left);
+            queue.add(tmp.right);
+        }
+    }
        
     // Driver code 
     public static void main(String args[]) 

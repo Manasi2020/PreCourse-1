@@ -2,33 +2,61 @@ class Stack {
     static final int MAX = 1000; 
     int top; 
     int a[] = new int[MAX]; // Maximum size of Stack 
-  
-    boolean isEmpty() 
-    { 
-        //Write your code here 
-    } 
 
-    Stack() 
-    { 
-        //Initialize your constructor 
-    } 
-  
-    boolean push(int x) 
-    { 
+    boolean isEmpty()
+    {
+        //Write your code here
+        if(top == (-1)) {
+            return true;
+        }
+        return false;
+    }
+
+    Stack()
+    {
+        //Initialize your constructor
+        top = -1;
+    }
+
+    boolean push(int x)
+    {
         //Check for stack Overflow
         //Write your code here
-    } 
-  
-    int pop() 
-    { 
+        if (top < MAX - 1) {
+            top++;
+            a[top] = x;
+            System.out.println("Pushed " + x + " in stack");
+            return true;
+        }
+        System.out.println("Stack Overflow");
+        return false;
+    }
+
+    int pop()
+    {
         //If empty return 0 and print " Stack Underflow"
         //Write your code here
-    } 
-  
-    int peek() 
-    { 
+        if(top == -1){
+            System.out.println("Stack Underflow");
+            return 0;
+        } else {
+            // System.out.println("Popping " + a[top] + " from stack" );
+            int popElement = a[top];
+            top--;
+            return popElement;
+        }
+
+    }
+
+    int peek()
+    {
         //Write your code here
-    } 
+        if(top > (-1)) {
+            return a[top];
+        }
+        return 0;
+
+    }
 } 
   
 // Driver code 
